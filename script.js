@@ -48,16 +48,31 @@ document.addEventListener("DOMContentLoaded",function(){
             li.textContent =`Name :${element.name}, gmail: ${element.gmail},Number: ${element.number}`;
             list.appendChild(li);
 
+            //// delete
             const button = document.createElement("button");
-            list.appendChild(button);
-
+            li.appendChild(button);
             button.textContent = "Delete";
-
             button.addEventListener("click",function(){
                 storedData.splice(index,1);
                 localStorage.setItem("Appointment",JSON.stringify(storedData))
-                getlist()
+               
             })
+
+            // edit button
+            const editbutton = document.createElement("button");
+            li.appendChild(editbutton);
+            editbutton.textContent = "Edit";
+            editbutton.addEventListener("click",function(){
+                
+            document.getElementById("name").value =element.name;
+            document.getElementById("gmail").value=element.gmail;
+            document.getElementById("number").value=element.number;
+            storedData.splice(index,1);
+            localStorage.setItem("Appointment",JSON.stringify(storedData));
+            getlist()
+            })
+
+          
         });
 
     }
