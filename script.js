@@ -43,11 +43,23 @@ document.addEventListener("DOMContentLoaded",function(){
      
         let storedData = JSON.parse(localStorage.getItem("Appointment"));
 
-        storedData.forEach(element => {
+        storedData.forEach((element,index) => {
             let li = document.createElement("li");
             li.textContent =`Name :${element.name}, gmail: ${element.gmail},Number: ${element.number}`;
             list.appendChild(li);
+
+            const button = document.createElement("button");
+            list.appendChild(button);
+
+            button.textContent = "Delete";
+
+            button.addEventListener("click",function(){
+                storedData.splice(index,1);
+                localStorage.setItem("Appointment",JSON.stringify(storedData))
+                getlist()
+            })
         });
 
     }
+    getlist()
 })
