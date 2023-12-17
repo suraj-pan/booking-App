@@ -20,6 +20,16 @@ document.addEventListener("DOMContentLoaded",function(){
             }
 
             storeData.push(obj);
+
+            axios.post('https://crudcrud.com/api/8f0bc4d4d2c74896a8172c07621dc93de/appointment', obj)
+            .then(response => {
+                // Handle successful update
+                console.log('Data updated successfully:', response.data);
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error updating data:', error);
+            });
     
             localStorage.setItem("Appointment",JSON.stringify(storeData));
     
@@ -42,6 +52,16 @@ document.addEventListener("DOMContentLoaded",function(){
         list.innerHTML="";
      
         let storedData = JSON.parse(localStorage.getItem("Appointment"));
+        // GET operation - Retrieve data
+        axios.get('https://crudcrud.com/api/8f0bc4d4d2c74896a8172c07621dc93d')
+        .then(response => {
+        // Handle retrieved data
+        console.log('Retrieved data:', response.data);
+        })
+        .catch(error => {
+        // Handle error
+        console.error('Error retrieving data:', error);
+        });
 
         storedData.forEach((element,index) => {
             let li = document.createElement("li");
