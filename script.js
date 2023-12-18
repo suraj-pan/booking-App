@@ -75,6 +75,13 @@ document.addEventListener("DOMContentLoaded",function(){
             button.addEventListener("click",function(){
                 storedData.splice(index,1);
                 localStorage.setItem("Appointment",JSON.stringify(storedData))
+                axios.delete('https://api.example.com/posts/123')
+              .then(response => {
+                console.log('Deleted successfully:', response.data);
+              })
+              .catch(error => {
+                console.error('Error deleting:', error);
+              });
                
             })
 
